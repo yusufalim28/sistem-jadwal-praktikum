@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Jadwal Praktikum - SJP</title>
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.bunny.net">
+    <link href="https://fonts.bunny.net/css?family=inter:400,500,600,700&display=swap" rel="stylesheet" />
+
+    <!-- Scripts / Styles -->
+    @vite(['resources/css/app.css', 'resources/js/app.js'])
+</head>
+<body class="bg-slate-50 text-slate-800 font-sans antialiased min-h-screen flex flex-col">
+
+    <x-nav></x-nav>
+    
+    <!-- Main Content -->
+    <main class="flex-grow w-full max-w-7xl mx-auto px-6 py-8 mt-15">
+        
+        <!-- Header -->
+        <div class="mb-8">
+            <h1 class="text-3xl font-bold text-slate-900 mb-2">Jadwal Praktikum</h1>
+            <p class="text-slate-600">Cari dan pantau jadwal praktikum untuk semua program studi.</p>
+        </div>
+
+        <!-- Search & Filter Card -->
+        <div class="bg-white p-5 rounded-2xl shadow-sm border border-slate-200 mb-8">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-4">
+                <!-- Search -->
+                <div class="md:col-span-2">
+                    <label class="block text-sm font-medium text-slate-700 mb-1">Cari Mata Kuliah / Dosen / Ruang</label>
+                    <div class="relative">
+                        <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                            <svg class="h-5 w-5 text-slate-400" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg>
+                        </div>
+                        <input type="text" placeholder="Ketik kata kunci pencarian..." class="w-full pl-10 pr-4 py-2 rounded-xl border-slate-300 shadow-sm focus:border-indigo-500 focus:ring focus:ring-indigo-500/20 transition">
+                    </div>
+                </div>
+                
+                <!-- Filter Prodi -->
+                <div>
+                    <label class="block text-sm font-medium text-slate-700 mb-1">Program Studi</label>
+                    <select class="w-full rounded-xl border-slate-300 shadow-sm focus:border-indigo-500 focus:ring focus:ring-indigo-500/20 py-2 px-3 transition bg-white text-slate-700">
+                        <option>Semua Program Studi</option>
+                        <option>Teknik Informatika</option>
+                        <option>Sistem Informasi</option>
+                        <option>Ilmu Komputer</option>
+                    </select>
+                </div>
+
+                <!-- Filter Hari -->
+                <div>
+                    <label class="block text-sm font-medium text-slate-700 mb-1">Hari</label>
+                    <select class="w-full rounded-xl border-slate-300 shadow-sm focus:border-indigo-500 focus:ring focus:ring-indigo-500/20 py-2 px-3 transition bg-white text-slate-700">
+                        <option>Semua Hari</option>
+                        <option>Senin</option>
+                        <option>Selasa</option>
+                        <option>Rabu</option>
+                        <option>Kamis</option>
+                        <option>Jumat</option>
+                        <option>Sabtu</option>
+                    </select>
+                </div>
+            </div>
+            
+            <div class="mt-4 flex justify-end gap-3">
+                <button class="px-5 py-2 text-slate-600 bg-slate-100 hover:bg-slate-200 rounded-xl font-medium transition">Reset Filter</button>
+                <button class="px-6 py-2 bg-indigo-600 text-white rounded-xl font-medium hover:bg-indigo-700 transition shadow-sm shadow-indigo-600/20">Terapkan Filter</button>
+            </div>
+        </div>
+
+        <!-- Table Schedule -->
+        <div class="bg-white rounded-2xl shadow-sm border border-slate-200 overflow-hidden">
+            <div class="overflow-x-auto">
+                <table class="w-full text-left border-collapse">
+                    <thead>
+                        <tr class="bg-slate-50 border-b border-slate-200 text-sm font-semibold text-slate-600 uppercase tracking-wider">
+                            <th class="px-6 py-4">Hari & Waktu</th>
+                            <th class="px-6 py-4">Mata Kuliah</th>
+                            <th class="px-6 py-4">Kelas</th>
+                            <th class="px-6 py-4">Ruang</th>
+                            <th class="px-6 py-4">Dosen & Asisten</th>
+                            <th class="px-6 py-4">Status</th>
+                            <th class="px-6 py-4 text-center">Aksi</th>
+                        </tr>
+                    </thead>
+                    <tbody class="divide-y divide-slate-100 text-sm">
+                        <!-- Row 1 -->
+                        <tr class="hover:bg-slate-50 transition group">
+                            <td class="px-6 py-4 align-top whitespace-nowrap">
+                                <div class="font-bold text-slate-900">Senin</div>
+                                <div class="text-slate-500 font-medium mt-0.5">08:00 - 10:30</div>
+                            </td>
+                            <td class="px-6 py-4 align-top">
+                                <div class="font-bold text-slate-900">Pemrograman Web Lanjut</div>
+                                <div class="text-xs text-slate-500 mt-1">SKS: 3 • SMT: 5</div>
+                            </td>
+                            <td class="px-6 py-4 align-top whitespace-nowrap">
+                                <span class="inline-flex items-center px-2.5 py-0.5 rounded-md text-xs font-medium bg-slate-100 text-slate-800 border border-slate-200">
+                                    TI-5A
+                                </span>
+                            </td>
+                            <td class="px-6 py-4 align-top">
+                                <div class="font-medium text-slate-900">Lab Komputer Dasar</div>
+                                <div class="text-xs text-slate-500 mt-1">Lantai 2, Gd. FITK</div>
+                            </td>
+                            <td class="px-6 py-4 align-top">
+                                <div class="font-medium text-slate-900">Budi Santoso, M.Kom.</div>
+                                <div class="text-xs text-slate-500 mt-1">Asisten: Andi (TI-20)</div>
+                            </td>
+                            <td class="px-6 py-4 align-top whitespace-nowrap">
+                                <span class="inline-flex items-center px-2.5 py-1 rounded-full text-xs font-semibold bg-green-50 text-green-700 border border-green-200">
+                                    <span class="w-1.5 h-1.5 rounded-full bg-green-500 mr-1.5"></span> Aktif
+                                </span>
+                            </td>
+                            <td class="px-6 py-4 align-top text-center whitespace-nowrap">
+                                <button class="text-indigo-600 hover:text-indigo-900 font-medium text-sm transition group-hover:underline">
+                                    Lihat Detail
+                                </button>
+                            </td>
+                        </tr>
+
+                        <!-- Row 2 -->
+                        <tr class="hover:bg-slate-50 transition group">
+                            <td class="px-6 py-4 align-top whitespace-nowrap">
+                                <div class="font-bold text-slate-900">Senin</div>
+                                <div class="text-slate-500 font-medium mt-0.5">10:30 - 13:00</div>
+                            </td>
+                            <td class="px-6 py-4 align-top">
+                                <div class="font-bold text-slate-900">Jaringan Komputer Dasar</div>
+                                <div class="text-xs text-slate-500 mt-1">SKS: 3 • SMT: 3</div>
+                            </td>
+                            <td class="px-6 py-4 align-top whitespace-nowrap">
+                                <span class="inline-flex items-center px-2.5 py-0.5 rounded-md text-xs font-medium bg-slate-100 text-slate-800 border border-slate-200">
+                                    SI-3B
+                                </span>
+                            </td>
+                            <td class="px-6 py-4 align-top">
+                                <div class="font-medium text-slate-900">Lab Jaringan 1</div>
+                                <div class="text-xs text-slate-500 mt-1">Lantai 3, Gd. Siber</div>
+                            </td>
+                            <td class="px-6 py-4 align-top">
+                                <div class="font-medium text-slate-900">Andi Susanto, M.T.</div>
+                                <div class="text-xs text-slate-500 mt-1">Asisten: Budi (SI-19)</div>
+                            </td>
+                            <td class="px-6 py-4 align-top whitespace-nowrap">
+                                <span class="inline-flex items-center px-2.5 py-1 rounded-full text-xs font-semibold bg-slate-100 text-slate-700 border border-slate-200">
+                                    Terjadwal
+                                </span>
+                            </td>
+                            <td class="px-6 py-4 align-top text-center whitespace-nowrap">
+                                <button class="text-indigo-600 hover:text-indigo-900 font-medium text-sm transition group-hover:underline">
+                                    Lihat Detail
+                                </button>
+                            </td>
+                        </tr>
+                        
+                        <!-- Row 3 -->
+                        <tr class="hover:bg-slate-50 transition group">
+                            <td class="px-6 py-4 align-top whitespace-nowrap">
+                                <div class="font-bold text-slate-900">Selasa</div>
+                                <div class="text-slate-500 font-medium mt-0.5">08:00 - 10:30</div>
+                            </td>
+                            <td class="px-6 py-4 align-top">
+                                <div class="font-bold text-slate-900">Kecerdasan Buatan</div>
+                                <div class="text-xs text-slate-500 mt-1">SKS: 3 • SMT: 5</div>
+                            </td>
+                            <td class="px-6 py-4 align-top whitespace-nowrap">
+                                <span class="inline-flex items-center px-2.5 py-0.5 rounded-md text-xs font-medium bg-slate-100 text-slate-800 border border-slate-200">
+                                    TI-5B
+                                </span>
+                            </td>
+                            <td class="px-6 py-4 align-top">
+                                <div class="font-medium text-slate-900">Lab Multimedia</div>
+                                <div class="text-xs text-slate-500 mt-1">Lantai 1, Gd. FITK</div>
+                            </td>
+                            <td class="px-6 py-4 align-top">
+                                <div class="font-medium text-slate-900">Dr. Citra Lestari</div>
+                                <div class="text-xs text-slate-500 mt-1">Asisten: Dian (TI-19)</div>
+                            </td>
+                            <td class="px-6 py-4 align-top whitespace-nowrap">
+                                <span class="inline-flex items-center px-2.5 py-1 rounded-full text-xs font-semibold bg-red-50 text-red-700 border border-red-200">
+                                    <span class="w-1.5 h-1.5 rounded-full bg-red-500 mr-1.5"></span> Dibatalkan
+                                </span>
+                            </td>
+                            <td class="px-6 py-4 align-top text-center whitespace-nowrap">
+                                <button class="text-indigo-600 hover:text-indigo-900 font-medium text-sm transition group-hover:underline">
+                                    Lihat Detail
+                                </button>
+                            </td>
+                        </tr>
+
+                    </tbody>
+                </table>
+            </div>
+            
+            <!-- Pagination -->
+            <div class="px-6 py-4 border-t border-slate-200 bg-slate-50 flex items-center justify-between">
+                <div class="text-sm text-slate-500">
+                    Menampilkan <span class="font-medium text-slate-900">1</span> hingga <span class="font-medium text-slate-900">3</span> dari <span class="font-medium text-slate-900">24</span> hasil
+                </div>
+                <div class="flex items-center gap-2">
+                    <button class="px-3 py-1.5 border border-slate-300 rounded-lg text-slate-600 hover:bg-slate-100 text-sm font-medium transition disabled:opacity-50" disabled>
+                        Sebelumnya
+                    </button>
+                    <button class="px-3 py-1.5 border border-slate-300 rounded-lg text-slate-600 hover:bg-slate-100 text-sm font-medium transition">
+                        Berikutnya
+                    </button>
+                </div>
+            </div>
+        </div>
+        
+    </main>
+
+</body>
+</html>
