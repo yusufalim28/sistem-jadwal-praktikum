@@ -9,7 +9,7 @@
         <div class="hidden md:flex items-center gap-8 font-medium text-sm">
             <a href="{{ route('home') }}" class="text-slate-600 hover:text-slate-900 transition-colors">Home</a>
             <a href="{{ route('jadwal') }}" class="text-slate-600 hover:text-slate-900 transition-colors">Jadwal</a>
-            <a href="#" class="text-slate-600 hover:text-slate-900 transition-colors">Kalender</a>
+            <a href="{{ route('kalender') }}" class="text-slate-600 hover:text-slate-900 transition-colors">Kalender</a>
             <a href="#" class="text-slate-600 hover:text-slate-900 transition-colors">Informasi Ruang</a>
         </div>
 
@@ -42,7 +42,7 @@
         <div class="flex flex-col px-6 py-4 space-y-4 font-medium text-sm">
             <a href="{{ route('home') }}" class="text-slate-600 hover:text-slate-900">Home</a>
             <a href="{{ route('jadwal') }}" class="text-slate-600 hover:text-slate-900">Jadwal</a>
-            <a href="#" class="text-slate-600 hover:text-slate-900">Kalender</a>
+            <a href="{{ route('kalender') }}" class="text-slate-600 hover:text-slate-900">Kalender</a>
             <a href="#" class="text-slate-600 hover:text-slate-900">Informasi Ruang</a>
             <hr class="border-slate-100">
             @if (Route::has('login'))

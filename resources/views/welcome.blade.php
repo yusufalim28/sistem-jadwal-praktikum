@@ -61,7 +61,7 @@
                         <option>FDKI</option>
                         <option>FUA</option>
                         <option>FEBI</option>
-                        <option>FATHIH</option>
+                        <option>FASTIH</option>
                     </select>
                 </div>
                 <div class="flex-1">
